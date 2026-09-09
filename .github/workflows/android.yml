@@ -22,9 +22,11 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      
     - name: Build with Gradle
-      # Since we don't have a local gradlew wrapper, we use the system gradle provided by ubuntu-latest
-      run: gradle assembleDebug
+      run: ./gradlew assembleDebug --warning-mode all --stacktrace
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
